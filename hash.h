@@ -1,7 +1,6 @@
 typedef struct hashtable {
 	list_t **bucket_lists;
 	int buckets;
-
 } hash_t;
 
 
