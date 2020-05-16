@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "liblist.c"
+#include "list.c"
 #include "hash.h"
 
 
