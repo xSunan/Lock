@@ -1,3 +1,4 @@
+#include "list.c"
 typedef struct hashtable {
 	list_t **bucket_lists;
 	int buckets;

@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "list.c"
 #include "hash.h"
 
 
@@ -45,16 +44,16 @@ void print_hash(hash_t *hash){
 	}
 }
 
-int main(){
-	hash_t *hash = malloc(sizeof(hash_t));
-	Hash_Init(hash,5);
-	void *element = malloc(sizeof(char));
-	Hash_Insert(hash, element, 1);
-	Hash_Insert(hash, element, 2);
-	Hash_Insert(hash, element, 3);
-	Hash_Insert(hash, element, 8);
-	print_hash(hash);
-	Hash_Delete(hash,2);
-	print_hash(hash);
+// int main(){
+// 	hash_t *hash = malloc(sizeof(hash_t));
+// 	Hash_Init(hash,5);
+// 	void *element = malloc(sizeof(char));
+// 	Hash_Insert(hash, element, 1);
+// 	Hash_Insert(hash, element, 2);
+// 	Hash_Insert(hash, element, 3);
+// 	Hash_Insert(hash, element, 8);
+// 	print_hash(hash);
+// 	Hash_Delete(hash,2);
+// 	print_hash(hash);
 
-}
+// }

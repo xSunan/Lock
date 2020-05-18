@@ -3,7 +3,6 @@ typedef struct node_ {
 	struct node_ *next;
 	unsigned int key;
 	void *element;
-	pthread_mutex_t node_lock;
 } Node;
 
 typedef struct list_{
@@ -15,7 +14,7 @@ void List_Init(list_t *list);
 void List_Insert(list_t *list, void *element, unsigned int key);
 void List_Delete(list_t *list, unsigned int key);
 void *List_Lookup(list_t *list, unsigned int key);
-
+void print_list(list_t *list);
 
 
 // 1 2 3 4 5 6 7
@@ -30,3 +29,6 @@ void *List_Lookup(list_t *list, unsigned int key);
 // 1 2 3 4 5 6     ---- 5
 
 // 4  
+
+
+// 7 6 5 4 3 2 1
