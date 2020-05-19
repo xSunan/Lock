@@ -5,7 +5,10 @@
 
 void Hash_Init(hash_t *hash, int buckets){
 	hash->buckets = buckets;
-	hash->bucket_lists = malloc(sizeof(list_t*)*buckets); 
+	hash->bucket_lists = malloc(sizeof(list_t*)*buckets);
+	for (int i = 0; i < buckets; i++) {
+		hash->bucket_lists[i] = NULL;
+	}
 }
 
 void Hash_Insert(hash_t *hash, void *element, unsigned int key) {
@@ -17,6 +20,7 @@ void Hash_Insert(hash_t *hash, void *element, unsigned int key) {
 		hash->bucket_lists[idx] = list; 
 	}
 	List_Insert(hash->bucket_lists[idx],element,key);
+	printf("fin\n");
 }
 
 void Hash_Delete(hash_t *hash, unsigned int key) {

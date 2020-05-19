@@ -1,4 +1,5 @@
 #include <pthread.h> 
+#include "spin.c"
 typedef struct node_ {
 	struct node_ *next;
 	unsigned int key;
@@ -7,7 +8,8 @@ typedef struct node_ {
 
 typedef struct list_{
 	Node *head;
-	pthread_mutex_t head_lock;
+	spinlock_t head_lock;
+	// pthread_mutex_t head_lock;
 } list_t;
 
 void List_Init(list_t *list);

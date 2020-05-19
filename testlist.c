@@ -6,7 +6,7 @@
 
 #define NUM_OPS_PER_THREAD 100
 #define NUM_OF_THREADS 20
-#define NUM_OF_LOOPS 10
+#define NUM_OF_LOOPS 100
 
 int num_threads = 0;
 
@@ -90,9 +90,6 @@ void start_threads(int n)
 
 void* thread_code(void *arg)
 {
-  static int threadnum=0;
-  threadnum++;
-  printf("enter\n");
   struct job_desc *jd = (struct job_desc *) arg;
   int numOfOps = NUM_OPS_PER_THREAD;
   int i = 0;
@@ -104,15 +101,17 @@ void* thread_code(void *arg)
 
   //    printf("  START Thread-%04d will execute %6d ops \n", jd->tid,
   //       numOfOps);
-
+  printf("inserting...\n");
   while (i < numOfOps) {
     addlist[i] = i + (jd->tid * NUM_OPS_PER_THREAD);
     List_Insert(&l, addlist + i, addlist[i]);
-
     (jd->ic)++;
     i++;
   }
-  printf("add %d\n",threadnum);
+  printf("finished\n");
+  
+
+  printf("deleting...\n");
   i = 0;
   while (i < numOfOps) {
     if (i % 3 == 0) {
@@ -121,20 +120,23 @@ void* thread_code(void *arg)
     }
     i++;
   }
-  printf("delete %d\n",threadnum);
+  printf("finished\n");
+
+  printf("looking up...\n");
   i = 0;
   while (i < numOfOps) {
     if (List_Lookup(&l, addlist[i]) != NULL)
       (jd->lc)++;
     i++;
   }
+  printf("finished\n");
 
-     printf("  END   Thread-%04d with %6d ic, %6d dc, %6d lc\n",
-        jd->tid, jd->ic, jd->dc, jd->lc);
+  //    printf("  END   Thread-%04d with %6d ic, %6d dc, %6d lc\n",
+  //       jd->tid, jd->ic, jd->dc, jd->lc);
   free(addlist);
-  printf("finish thread %d\n",threadnum);
   return NULL;
 }
+
 
 
 void myerror(char *arg)

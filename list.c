@@ -22,34 +22,37 @@ void destroy_node(Node *node){
 
 void List_Init(list_t *list) {
 	list->head = NULL;
-	if (pthread_mutex_init(&(list->head_lock), NULL) != 0)
-    {
-        printf("\n mutex init failed\n");
-    }
+
+	// init lock
+	list->head_lock.flag=0;
+	// if (pthread_mutex_init(&(list->head_lock), NULL) != 0)
+    // {
+    //     printf("\n mutex init failed\n");
+    // }
 }
 
 void List_Insert(list_t *list, void *element, unsigned int key){
-	// printf("adding\n");
 	Node *new_node = create_node(element, key);
-	pthread_mutex_lock(&(list->head_lock));
+	spinlock_acquire(&list->head_lock);
+	// pthread_mutex_lock(&(list->head_lock));
 	if (list->head == NULL){
 		list->head = new_node;
 	} else {
 		new_node->next = list->head;
 		list->head = new_node;
 	}
-	pthread_mutex_unlock(&(list->head_lock));
-
+	spinlock_release(&list->head_lock);
+	// pthread_mutex_unlock(&(list->head_lock));
 	return;
 }
 
 void List_Delete(list_t *list, unsigned int key){
-	pthread_mutex_lock(&(list->head_lock));
+	spinlock_acquire(&list->head_lock);
+	// pthread_mutex_lock(&(list->head_lock));
 
 	if(list==NULL || list->head == NULL){
-		pthread_mutex_unlock(&(list->head_lock));
-
-		// printf("null return\n");
+		spinlock_release(&list->head_lock);
+		// pthread_mutex_unlock(&(list->head_lock));
 		return;
 	}
 	Node *cur = list->head;
@@ -71,25 +74,29 @@ void List_Delete(list_t *list, unsigned int key){
 		pre = cur;
 		cur = cur->next;
 	}
-	pthread_mutex_unlock(&(list->head_lock));
+	spinlock_release(&list->head_lock);
+	// pthread_mutex_unlock(&(list->head_lock));
 }
 
 
 void *List_Lookup(list_t *list, unsigned int key){
 	if(list==NULL || list->head==NULL)
 		return NULL;
-	// printf("looking up\n");
-	pthread_mutex_lock(&(list->head_lock));
+	
+	spinlock_acquire(&list->head_lock);
+	// pthread_mutex_lock(&(list->head_lock));
 	Node *cur = list->head;
 	while (cur != NULL){
 		if(cur->key == key){
-			pthread_mutex_unlock(&(list->head_lock));
+			spinlock_release(&list->head_lock);
+			// pthread_mutex_unlock(&(list->head_lock));
 			return cur;
 		}
 		
 		cur = cur->next;
 	}
-	pthread_mutex_unlock(&(list->head_lock));
+	spinlock_release(&list->head_lock);
+	// pthread_mutex_unlock(&(list->head_lock));
 
 	return NULL;
 

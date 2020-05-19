@@ -1,3 +1,5 @@
 make clean
 make
-./testList
+./testCounter
+# gcc test.c -o test
+# ./test
