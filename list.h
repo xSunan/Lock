@@ -1,5 +1,8 @@
+#ifndef _LISTH_
+#define _LISTH_
+
 #include <pthread.h> 
-#include "spin.c"
+#include "spin.h"
 
 typedef struct node_ {
 	struct node_ *next;
@@ -17,4 +20,7 @@ void List_Init(list_t *list);
 void List_Insert(list_t *list, void *element, unsigned int key);
 void List_Delete(list_t *list, unsigned int key);
 void *List_Lookup(list_t *list, unsigned int key);
+
+#endif
+
 
