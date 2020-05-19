@@ -42,7 +42,7 @@ void print_hash(hash_t *hash){
 		
 		if (hash->bucket_lists[i] != NULL){
 			printf("%d :", i);
-			print_list(hash->bucket_lists[i]);
+			// print_list(hash->bucket_lists[i]);
 		}
 		
 	}

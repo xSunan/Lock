@@ -15,11 +15,3 @@ void spinlock_acquire(spinlock_t *lock) {
 void spinlock_release(spinlock_t *lock) {
     lock->flag = 0;
 }
-
-// int main() {
-//     spinlock_t lock={.flag=0};
-//     spinlock_acquire(&lock);
-//     spinlock_release(&lock);
-//     spinlock_acquire(&lock);
-//     printf("flag: %d\n", lock.flag);
-// }
