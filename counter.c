@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "counter.h"
+
 void lock_acquire(counter_t *c){
     #ifdef pthreadlock
     pthread_mutex_lock(&(c->pthread_lock));

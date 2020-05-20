@@ -1,8 +1,9 @@
 #ifndef _COUNTERH_
 #define _COUNTERH_
 
-#include "spin.h"
 #include <pthread.h>
+#include <stdio.h>
+#include "spin.h"
 
 typedef struct Counter{
     int count;

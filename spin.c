@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "spin.h"
 
 int xchg(volatile int *addr, int newval) {

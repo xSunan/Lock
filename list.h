@@ -1,6 +1,8 @@
 #ifndef _LISTH_
 #define _LISTH_
 
+#include<stdio.h>
+#include<stdlib.h>
 #include <pthread.h> 
 #include "spin.h"
 

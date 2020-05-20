@@ -1,7 +1,4 @@
-#include<stdio.h>
-#include<stdlib.h>
 #include "hash.h"
-
 
 void Hash_Init(hash_t *hash, int buckets){
 	hash->buckets = buckets;

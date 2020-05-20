@@ -1,5 +1,9 @@
 #ifndef _SPINH_
 #define _SPINH_
+
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct {
     int flag;  // 1-occupied, 0-unoccupied
 } spinlock_t;
